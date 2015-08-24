@@ -21,7 +21,7 @@ wss.on("connection", function(ws) {
     //    ws.send(JSON.stringify(new Date()), function() {});
     //}, 5000);
     
-    wss.on("message", function(data) {
+    ws.on("message", function(data) {
         
         var msg = wss.unmaskMessage(data);
         console.log(wss.convertToString("Message received:", msg.opcode, msg.message));
@@ -29,6 +29,7 @@ wss.on("connection", function(ws) {
         //var packagedMessage = wss.packageMessage(msg.opcode, msg.message);
         //wss.sendMessage("all", packagedMessage);
         //ws.send(JSON.stringify(data));
+        ws.send("Received");
     });
 
     ws.on("close", function() {

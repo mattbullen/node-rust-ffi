@@ -4,6 +4,7 @@ function sendMessage(ws) {
     ws.send(msg, function ack(error) {
         console.log("Error:", error);
     });
+    
 }
 
 function init() {
@@ -18,7 +19,9 @@ function init() {
      
     $("#button").on("click", function(event) {
         event.preventDefault();
-        sendMessage(ws);
+        var msg = $("#input").val();
+        console.log("Message:", msg);
+        ws.send(msg);
     });
 }
 
