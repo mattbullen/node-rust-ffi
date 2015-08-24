@@ -1,5 +1,4 @@
-function sendMessage(event, ws) {
-    event.preventDefault();
+function sendMessage(ws) {
     var msg = $("#input").val();
     ws.send(msg, function ack(error) {
         console.log("Error:", error);
@@ -16,7 +15,9 @@ function init() {
         document.querySelector("#result").appendChild(li);
     };
      
-    document.getElementById("button").addEventListener("click", function inputClickHandler(event, ws) { sendMessage(event, ws); });
+    $("#button").on("click", function() {
+        sendMessage(ws);
+    });
 }
 
 window.addEventListener("DOMContentLoaded", init);
