@@ -22,18 +22,18 @@ wss.on("connection", function(ws) {
     //}, 5000);
     
     wss.on("message", function(data) {
-        console.log("Data:", data);
-        //var msg = wss.unmaskMessage(data);
-        //console.log(wss.convertToString("Message received:", msg.opcode, msg.message));
+        
+        var msg = wss.unmaskMessage(data);
+        console.log(wss.convertToString("Message received:", msg.opcode, msg.message));
         
         //var packagedMessage = wss.packageMessage(msg.opcode, msg.message);
         //wss.sendMessage("all", packagedMessage);
-        ws.send(JSON.stringify(data));
+        //ws.send(JSON.stringify(data));
     });
 
     ws.on("close", function() {
         console.log("Websocket: closed");
-        clearInterval(id);
+        //clearInterval(id);
     })
     
 });
