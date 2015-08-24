@@ -16,7 +16,8 @@ function init() {
         document.querySelector("#result").appendChild(li);
     };
      
-    $("#button").on("click", function() {
+    $("#button").on("click", function(event) {
+        event.preventDefault();
         sendMessage(ws);
     });
 }
