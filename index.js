@@ -1,28 +1,38 @@
-var WebSocketServer = require("ws").Server
-var http = require("http")
-var express = require("express")
-var app = express()
-var port = process.env.PORT || 5000
+var WebSocketServer = require("ws").Server;
+var http = require("http");
+var express = require("express");
+var app = express();
+var port = process.env.PORT || 5000;
 
-app.use(express.static(__dirname + "/"))
+app.use(express.static(__dirname + "/"));
 
-var server = http.createServer(app)
-server.listen(port)
+var server = http.createServer(app);
+server.listen(port);
+console.log("HTTP server listening on port %d", port);
 
-console.log("http server listening on %d", port)
-
-var wss = new WebSocketServer({server: server})
-console.log("websocket server created")
+var wss = new WebSocketServer({server: server});
+console.log("Websocket: created");
 
 wss.on("connection", function(ws) {
-  var id = setInterval(function() {
-    ws.send(JSON.stringify(new Date()), function() {  })
-  }, 1000)
+    
+    console.log("Websocket: open");
+    
+    var id = setInterval(function() {
+        ws.send(JSON.stringify(new Date()), function() {});
+    }, 5000);
 
-  console.log("websocket connection open")
+    ws.on("close", function() {
+        console.log("Websocket: closed");
+        clearInterval(id);
+    })
+    
+});
 
-  ws.on("close", function() {
-    console.log("websocket connection close")
-    clearInterval(id)
-  })
-})
+wss.on("message", function(data, id) {
+    
+    var msg = server.unmaskMessage(data);
+    console.log(server.convertToString("Message received:", msg.opcode, msg.message));
+    
+    var packagedMessage = server.packageMessage(msg.opcode, msg.message);
+    server.sendMessage("all", packagedMessage);
+});
