@@ -29,7 +29,11 @@ wss.on("connection", function(ws) {
         //var packagedMessage = wss.packageMessage(msg.opcode, msg.message);
         //wss.sendMessage("all", packagedMessage);
         //ws.send(JSON.stringify(data));
-        ws.send("Received");
+        var reply = {
+            message: data,
+            status: "OK"
+        }
+        ws.send(JSON.stringify(reply));
     });
 
     ws.on("close", function() {
