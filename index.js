@@ -23,8 +23,8 @@ wss.on("connection", function(ws) {
     
     ws.on("message", function(data) {
         
-        var msg = wss.unmaskMessage(data);
-        console.log(wss.convertToString("Message received:", msg.opcode, msg.message));
+        var msg = ws.unmaskMessage(data);
+        console.log(ws.convertToString("Message received:", msg.opcode, msg.message));
         
         //var packagedMessage = wss.packageMessage(msg.opcode, msg.message);
         //wss.sendMessage("all", packagedMessage);
