@@ -1,12 +1,3 @@
-function sendMessage(ws) {
-    var msg = $("#input").val();
-    console.log("Message:", msg);
-    ws.send(msg, function ack(error) {
-        console.log("Error:", error);
-    });
-    
-}
-
 function init() {
     
     var host = location.origin.replace(/^http/, "ws");
@@ -21,8 +12,10 @@ function init() {
     $("#button").on("click", function(event) {
         event.preventDefault();
         var msg = $("#input").val();
-        console.log("Message:", msg);
-        ws.send(msg);
+        console.log("\nMessage:", msg);
+        ws.send(msg, function ack(error) {
+            console.log("Error:", error);
+        });
     });
 }
 

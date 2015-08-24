@@ -47,7 +47,7 @@ ul li {
     box-sizing: border-box;
     min-height: 35px;
     width: 500px;
-    padding: 8px;
+    padding: 8px 16px;
     border: 1px solid #aaa;
     font-family: monospace;
     color: #000;
