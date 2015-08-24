@@ -1,5 +1,6 @@
 function sendMessage(ws) {
     var msg = $("#input").val();
+    console.log("Message:", msg);
     ws.send(msg, function ack(error) {
         console.log("Error:", error);
     });

@@ -29,10 +29,11 @@ wss.on("connection", function(ws) {
 });
 
 wss.on("message", function(data, id) {
+    console.log("Data:", data);
+    var msg = wss.unmaskMessage(data);
+    console.log(wss.convertToString("Message received:", msg.opcode, msg.message));
     
-    var msg = server.unmaskMessage(data);
-    console.log(server.convertToString("Message received:", msg.opcode, msg.message));
-    
-    var packagedMessage = server.packageMessage(msg.opcode, msg.message);
-    server.sendMessage("all", packagedMessage);
+    var packagedMessage = wss.packageMessage(msg.opcode, msg.message);
+    wss.sendMessage("all", packagedMessage);
+    //ws.sendMessage(packagedMessage);
 });
