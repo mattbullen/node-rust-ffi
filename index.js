@@ -28,7 +28,7 @@ wss.on("connection", function(ws) {
         
         console.log("Message received:", data);
         
-        var ffiLibrary = ffi.Library("../../../target/debug/libcc", {
+        var ffiLibrary = ffi.Library("app/target/debug/libcc", {
             how_many_characters: ["uint32", ["string"]],
         });
         var chars = ffiLibrary.how_many_characters(data);
