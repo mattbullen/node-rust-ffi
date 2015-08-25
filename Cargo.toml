@@ -1,0 +1,11 @@
+[package]
+name = "cc"
+version = "0.1.0"
+authors = ["Matt Bullen <burner0110@gmail.com>"]
+
+[dependencies]
+libc = "*"
+
+[lib]
+name = "cc"
+crate-type = ["dylib"]
