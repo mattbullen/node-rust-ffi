@@ -5,6 +5,8 @@ var express = require("express");
 var app = express();
 var port = process.env.PORT || 5000;
 var ffi = require("ffi");
+var path = require("path");
+var sopath = path.join(__dirname, "/target/debug/libcc.so");
 app.use(express.static(__dirname + "/"));
 
 // Start the server
@@ -28,7 +30,7 @@ wss.on("connection", function(ws) {
         
         console.log("Message received:", data);
         
-        var ffiLibrary = ffi.Library("app/target/debug/libcc", {
+        var ffiLibrary = ffi.Library(sopath, {
             how_many_characters: ["uint32", ["string"]],
         });
         var chars = ffiLibrary.how_many_characters(data);
