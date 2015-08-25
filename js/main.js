@@ -16,6 +16,8 @@ function init() {
         ws.send(msg, function ack(error) {
             console.log("Error:", error);
         });
+        $("#input").html("");
+        $("#input").blur();
     });
 }
 
