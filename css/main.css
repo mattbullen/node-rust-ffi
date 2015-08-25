@@ -26,6 +26,7 @@ ul {
 
 ul li {
     line-height: 1.618;
+    margin-bottom: 8px;
 }
       
 #wrapper {
@@ -47,8 +48,9 @@ ul li {
     box-sizing: border-box;
     min-height: 35px;
     width: 500px;
-    padding: 8px 16px;
+    padding: 16px 16px 8px 16px;
     border: 1px solid #aaa;
     font-family: monospace;
     color: #000;
+    word-wrap: break-word;
 }
