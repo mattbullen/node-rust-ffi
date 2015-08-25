@@ -13,11 +13,11 @@ function init() {
         event.preventDefault();
         var msg = $("#input").val();
         console.log("\nMessage:", msg);
+        $("#input").html("");
+        $("#input").blur();
         ws.send(msg, function ack(error) {
             console.log("Error:", error);
         });
-        $("#input").html("");
-        $("#input").blur();
     });
 }
 
