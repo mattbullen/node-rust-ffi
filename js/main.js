@@ -6,7 +6,8 @@ function init() {
         console.log("Reply:", event.data);
         var li = document.createElement("li");
         li.innerHTML = event.data;
-        document.querySelector("#list").appendChild(li);
+        //document.querySelector("#list").appendChild(li);
+        $("#list").prepend(li);
     };
      
     $("#button").on("click", function(event) {
